@@ -27,7 +27,7 @@
 		</tr>
 		<c:forEach items="${quest}" var="q">
 		<tr>
-			<td><c:out value="${q.question}"/></td>
+			<td><a href="/questions/${q.id}"><c:out value="${q.question}"/></a></td>
 			<c:forEach items="${q.tags}" var="t">
 				<td><c:out value="${t.subject}"/></td>
 			</c:forEach>

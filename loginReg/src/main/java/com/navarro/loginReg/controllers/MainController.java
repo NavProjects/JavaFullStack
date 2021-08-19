@@ -82,8 +82,9 @@ public class MainController {
 	// render home
 	@RequestMapping("/home")
 	public String home(HttpSession session, Model model) {
+		// Checking if there is a user id in session
 		Long id = (Long) session.getAttribute("userId");
-		
+		// if there is we will grab that user data otherwise redirect to login
 		if(id != null) {
 			User u = userService.findUserById(id);
 			model.addAttribute("user", u);
@@ -101,4 +102,6 @@ public class MainController {
 		session.invalidate();
 		return "redirect:/login";
 	}
+	
+	
 }

@@ -14,7 +14,6 @@ import javax.persistence.PrePersist;
 import javax.persistence.PreUpdate;
 import javax.persistence.Table;
 import javax.validation.constraints.NotBlank;
-import javax.validation.constraints.NotNull;
 
 import org.springframework.format.annotation.DateTimeFormat;
 
@@ -25,13 +24,21 @@ public class Answer {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
+    
+    
     @NotBlank(message = "Can not be blank")
     private String answer;
+    
+    
 	@DateTimeFormat(pattern="yyyy-MM-dd")
     @Column(updatable=false)
     private Date createdAt;
+	
+	
 	@DateTimeFormat(pattern="yyyy-MM-dd")
     private Date updatedAt;
+	
+	
 	// these are GETTERS and SETTERS
     @PrePersist
     protected void onCreate(){
@@ -41,12 +48,14 @@ public class Answer {
     protected void onUpdate(){
         this.updatedAt = new Date();
     }
+    
+    
     // question table association
     // MANY TO ONE
-    @NotNull(message="Please pick a question")
     @ManyToOne(fetch=FetchType.LAZY)
     @JoinColumn(name="question_id")
     private Question question;
+    
     // Constructor
     public Answer () {
     	

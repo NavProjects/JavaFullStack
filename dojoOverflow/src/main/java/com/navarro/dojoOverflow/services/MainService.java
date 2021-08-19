@@ -1,6 +1,7 @@
 package com.navarro.dojoOverflow.services;
 
 import java.util.List;
+import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
@@ -31,6 +32,14 @@ public class MainService {
 	public List<Question> allQuestions(){
 		return questionRepo.findAll();
 	}
+	// GET ONE
+	public Question getQuest(Long id) {
+		Optional<Question> optionQuest = questionRepo.findById(id);
+		if(optionQuest.isPresent()) {
+			return optionQuest.get();
+		}
+		return null;
+	}
 	// POST
 	// create Question
 	public Question createQ(Question question) {
@@ -50,9 +59,14 @@ public class MainService {
 	public List<Answer> allAnswers(){
 		return answerRepo.findAll();
 	}
+	// GET TOP 2
+	public List<Answer> topTwoAnswers(){
+		return answerRepo.findTop2ByOrderByIdDesc();
+	}
 	// POST
 	// create Answer
 	public Answer createA(Answer answer) {
+		System.out.println(answer.getId());
 		return answerRepo.save(answer);
 	}
 	// PUT

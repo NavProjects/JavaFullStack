@@ -16,7 +16,7 @@ public class UserService {
 	@Autowired
 	private UserRep userRep;
 	
-	
+	// POST
 	// Register User and hash password
 	public User registerUser(User user) {
 		String hashed = BCrypt.hashpw(user.getPassword(), BCrypt.gensalt());
@@ -24,21 +24,17 @@ public class UserService {
 		return userRep.save(user);
 	}
 	
-	// validate user by email
-//	public User validateEmail(String email) {
-//		Optional<User> validE = userRep.findUserByEmail(email);
-//		if(validE.isPresent()) {
-//			return validE.get();
-//		}
-//		return null;
-//	}
-	
+//	 validate user by email
+	public boolean existEmail(String email) {
+		return userRep.existsByEmail(email);
+	}
+	//GET
 	// find user by email 
 	public User findByEmail(String email) {
 		return userRep.findByEmail(email);
 	}
 	
-	
+	//GET
 	// find user by id
 	public User findUserById(Long id) {
 		Optional<User> u = userRep.findById(id);

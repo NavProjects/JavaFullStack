@@ -34,11 +34,8 @@ public class UserValidator implements Validator {
 		}
 		
 		
-//		if (user.getEmail().equals(userservice.validateEmail(user.getEmail()))) {
-//			
-//		}
+		if (userservice.existEmail(user.getEmail())) {
+			errors.rejectValue("email", "Verify");
+		}
 	}
-	
-	
-
 }

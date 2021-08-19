@@ -1,5 +1,6 @@
 package com.navarro.dojoOverflow.models;
 
+import java.util.ArrayList;
 import java.util.Date;
 import java.util.List;
 
@@ -61,7 +62,7 @@ public class Question{
 		inverseJoinColumns = @JoinColumn(name = "tag_id")
 		)
     private List<Tag> tags;
-    
+//    private List<Tag> tags = new ArrayList<Tag>();
     
 	// answer table association 
 	//ONE TO MANY
